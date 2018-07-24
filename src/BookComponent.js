@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 
 class BookComponent extends Component {
     render() {
-        console.log(this.props.book.id);
         return (
                  <li key={this.props.book.id}>
                     <div className="book">
