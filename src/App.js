@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BooksList from './BooksList'
-import SearchBook from './SearchBook'
+import SearchComponent from './SearchComponent'
 
 class BooksApp extends Component {
   state = {
@@ -20,7 +20,7 @@ class BooksApp extends Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-         <SearchBook books={this.state.books}/>
+         <SearchComponent books={this.state.books}/>
         ) : (
           <div className="list-books">
             <div className="list-books-title">
