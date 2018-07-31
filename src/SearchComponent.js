@@ -5,31 +5,27 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class SearchBook extends Component {
-    static propTypes = {
-        books: PropTypes.array.isRequired,
-        moveToShelf: PropTypes.func.isRequired
-    }
-
     state = {
-        query: '',
+        query: "",
         books: []
     }
 
-    updateQuery = (query) => {
-        if(query){
-            
-            this.setState({query: query})
+    updateQuery = (query) => {   
+        if(!query) {return}
+            this.setState({ query: query })
             BooksAPI.search(query.trim()).then((books) => {
-                books.length > 0 ? this.setState({books: books}) : this.setState({books: []})
-            })
-        }else{
-            this.setState({query: '', books: []})
-        }        
+              if (books.length > 0) {
+                this.setState({ books: books })
+              } else {
+                this.setState({ books: [] })
+              }
+            }) 
     }
 
     render() {
+        console.log(this.props)
         const { query, books } = this.state
-        const {moveToShelf} = this.props
+        const { onChangeShelf } = this.props
 
         return(
             <div className="search-books">
@@ -44,7 +40,7 @@ class SearchBook extends Component {
               <ol className="books-grid">
               {books.map((book) => (
             <li key={book.id}>
-                <BookComponent book={book} onChangeShelf={moveToShelf}/>
+                <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)}/>
             </li>
             ))}</ol>
             </div>

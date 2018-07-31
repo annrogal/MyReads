@@ -23,9 +23,9 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {books.filter((book) => (book.status === 'readNow'))
+                  {books.filter((book) => (book.status === 'currentlyReading'))
                                 .map((book) =>(
-                                <BookComponent book={book} onChangeShelf={onChangeShelf} />                 
+                                <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)} />                 
                 ))}
                   </ol>
                 </div>
@@ -36,7 +36,7 @@ class BooksList extends Component {
                   <ol className="books-grid">
                   {books.filter((book) => (book.status === 'wantToRead'))
                                 .map((book) => (
-                  <BookComponent book={book} onChangeShelf={onChangeShelf}/>
+                  <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)}/>
                 ))}
                   </ol>
                 </div>
@@ -47,7 +47,7 @@ class BooksList extends Component {
                   <ol className="books-grid">
                   {books.filter((book) => (book.status === 'read'))
                                  .map((book) => (
-                  <BookComponent book={book} onChangeShelf={onChangeShelf}/>
+                  <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)}/>
                 ))}
                   </ol>
                 </div>

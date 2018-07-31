@@ -8,7 +8,7 @@ class BookComponent extends Component {
                     <div className="book">
                       <div className="book-top">
                         <div className="book-cover" style={{ 
-                          backgroundImage: book.backgroundImage
+                          backgroundImage: `url(${book.imageLinks.thumbnail})`
                         }}></div>
                         <div className="book-shelf-changer">
                           <select onChange={(event) => onChangeShelf(book, event.target.value)}>
