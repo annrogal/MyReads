@@ -9,6 +9,8 @@ class BooksList extends Component {
     }
 
     render() {
+      const {books, onChangeShelf} = this.props
+
         return (
             <div className="list-books-content">
             <div>
@@ -16,9 +18,9 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {this.props.books.filter((book) => (book.status === 'readNow'))
+                  {books.filter((book) => (book.status === 'readNow'))
                                 .map((book) =>(
-                                <BookComponent book={book} />                 
+                                <BookComponent book={book} onChangeShelf={onChangeShelf} />                 
                 ))}
                   </ol>
                 </div>
@@ -27,9 +29,9 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {this.props.books.filter((book) => (book.status === 'wantToRead'))
+                  {books.filter((book) => (book.status === 'wantToRead'))
                                 .map((book) => (
-                  <BookComponent book={book} />
+                  <BookComponent book={book} onChangeShelf={onChangeShelf}/>
                 ))}
                   </ol>
                 </div>
@@ -38,9 +40,9 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {this.props.books.filter((book) => (book.status === 'read'))
+                  {books.filter((book) => (book.status === 'read'))
                                  .map((book) => (
-                  <BookComponent book={book}/>
+                  <BookComponent book={book} onChangeShelf={onChangeShelf}/>
                 ))}
                   </ol>
                 </div>

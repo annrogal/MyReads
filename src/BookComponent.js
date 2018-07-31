@@ -2,15 +2,16 @@ import React, {Component} from 'react'
 
 class BookComponent extends Component {
     render() {
+      const {book, onChangeShelf} = this.props
         return (
-                 <li key={this.props.book.id}>
+                 <div key={book.id}>
                     <div className="book">
                       <div className="book-top">
                         <div className="book-cover" style={{ 
-                          backgroundImage: this.props.book.backgroundImage
+                          backgroundImage: book.backgroundImage
                         }}></div>
                         <div className="book-shelf-changer">
-                          <select>
+                          <select onChange={(event) => onChangeShelf(book, event.target.value)}>
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -19,10 +20,10 @@ class BookComponent extends Component {
                           </select>
                         </div>
                       </div>
-                      <div className="book-title">{this.props.book.title}</div>
-                      <div className="book-authors">{this.props.book.author}</div>
+                      <div className="book-title">{book.title}</div>
+                      <div className="book-authors">{book.author}</div>
                     </div>
-                  </li>
+                  </div>
         )
     }
 }
