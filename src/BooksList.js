@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom'
 
 class BooksList extends Component {
     static propTypes = {
-      books: PropTypes.array.isRequired
+      books: PropTypes.array.isRequired,
+      onChangeShelf: PropTypes.func.isRequired
     }
 
     render() {
@@ -23,9 +24,11 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {books.filter((book) => (book.status === 'currentlyReading'))
-                                .map((book) =>(
-                                <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)} />                 
+                  {books.filter((book) => (
+                    book.shelf === 'currentlyReading')).map((book) =>(
+                      <li key={ book.id }>
+                        <BookComponent book={ book } onChangeShelf={ onChangeShelf } />
+                      </li>  
                 ))}
                   </ol>
                 </div>
@@ -34,9 +37,11 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {books.filter((book) => (book.status === 'wantToRead'))
+                  {books.filter((book) => (book.shelf === 'wantToRead'))
                                 .map((book) => (
-                  <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)}/>
+                                  <li key={book.id}>
+                                  <BookComponent book={ book } onChangeShelf={ onChangeShelf } />
+                                  </li>
                 ))}
                   </ol>
                 </div>
@@ -45,9 +50,11 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {books.filter((book) => (book.status === 'read'))
+                  {books.filter((book) => (book.shelf === 'read'))
                                  .map((book) => (
-                  <BookComponent book={book} onChangeShelf={(book, shelf) => onChangeShelf(book, shelf)}/>
+                                  <li key={book.id}>
+                                  <BookComponent book={ book } onChangeShelf={ onChangeShelf } />
+                                  </li>
                 ))}
                   </ol>
                 </div>

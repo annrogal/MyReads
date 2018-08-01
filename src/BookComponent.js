@@ -4,7 +4,6 @@ class BookComponent extends Component {
     render() {
       const {book, onChangeShelf} = this.props
         return (
-                 <div key={book.id}>
                     <div className="book">
                       <div className="book-top">
                         <div className="book-cover" style={{ 
@@ -23,7 +22,6 @@ class BookComponent extends Component {
                       <div className="book-title">{book.title}</div>
                       <div className="book-authors">{book.author}</div>
                     </div>
-                  </div>
         )
     }
 }
