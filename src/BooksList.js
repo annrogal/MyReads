@@ -24,7 +24,7 @@ class BooksList extends Component {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                  {books.filter((book) => (
+                  {books.filter((book) => (console.log(book.shelf),
                     book.shelf === 'currentlyReading')).map((book) =>(
                       <li key={ book.id }>
                         <BookComponent book={ book } onChangeShelf={ onChangeShelf } />

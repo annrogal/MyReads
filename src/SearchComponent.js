@@ -16,40 +16,16 @@ class SearchBook extends Component {
     }
 
     updateQuery = (query) => {   
-        // if(!query) { return }
+        if(!query) { return }
             
-        // this.setState({ 
-        //   query: query 
-        // })
+        this.setState({ 
+          query: query 
+        })
 
-        // BooksAPI.search(query.trim()).then((books) => {
-        //   books.length > 0 ? this.setState({ books: books }) :  this.setState({ books: [] })
-        // }) 
-        if (query) {
-          this.setState({ query: query })
-          BooksAPI.search(query.trim()).then((books) => {
-            if (books.length > 0) {
-              /* The ids of books that are already on a shelf */
-              const originalBooksIds = this.props.books.map((book) => book.id)
-              books.map((book) => {
-                /*
-                 * If the retrieved book is already on a shelf, assign it to the
-                 * correct shelf.
-                 */
-                if (originalBooksIds.indexOf(book.id) >= 0) {
-                  book.shelf = this.props.books.find(
-                    (originalBook => originalBook.id === book.id)).shelf
-                }
-                return book.shelf
-              })
-              this.setState({ books: books })
-            } else {
-              this.setState({ books: [] })
-            }
-          })
-        } else {
-          this.setState({ query: '', books: [] })
-        }
+        BooksAPI.search(query.trim()).then((books) => {
+          books.length > 0 ? this.setState({ books: books }) :  this.setState({ books: [] })
+        }) 
+
     }
 
     render() {
