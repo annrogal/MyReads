@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Route} from 'react-router-dom'
+import sortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BooksList from './BooksList'
@@ -20,7 +21,7 @@ class BooksApp extends Component {
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf
       this.setState((state) => ({       
-        books: state.books.filter(b => b.id !== book.id).concat([book])
+        books: state.books.filter(b => b.id !== book.id).concat([book]).sort(sortBy('title'))
       }))
     })
   }
